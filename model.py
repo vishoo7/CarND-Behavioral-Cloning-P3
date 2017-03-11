@@ -44,7 +44,7 @@ def generator(samples, batch_size=32):
                 except ValueError:
                     continue
 
-                for i, name in names:
+                for i, name in enumerate(names):
                     image = cv2.imread(name)
                     images.append(image)
                     if i==0:
