@@ -1,6 +1,6 @@
-#**Behavioral Cloning**
+**Behavioral Cloning**
 
-##Writeup Template
+# Writeup Template
 
 ---
 
@@ -26,13 +26,13 @@ The goals / steps of this project are the following:
 [image8]: ./example_right_flipped "Example flipped image from the right camera"
 [image9]: ./training_results.png "Results of training the model"
 
-## Rubric Points
-###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
+# Rubric Points
+## Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
 
 ---
-###Files Submitted & Code Quality
+## Files Submitted & Code Quality
 
-####1. Submission includes all required files and can be used to run the simulator in autonomous mode
+### 1. Submission includes all required files and can be used to run the simulator in autonomous mode
 
 My project includes the following files:
 * model.py containing the script to create and train the model
@@ -41,19 +41,19 @@ My project includes the following files:
 * writeup_report.md summarizing the results
 * run1.mp4 being a video of the successful autonomous drive
 
-####2. Submission includes functional code
+### 2. Submission includes functional code
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing
 ```sh
 python drive.py model.h5
 ```
 
-####3. Submission code is usable and readable
+### 3. Submission code is usable and readable
 
 The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
 
-###Model Architecture and Training Strategy
+## Model Architecture and Training Strategy
 
-####1. An appropriate model architecture has been employed
+### 1. An appropriate model architecture has been employed
 
 My model is on constructed on lines 59-73.
 
@@ -63,25 +63,25 @@ Here is the NVIDIA model:
 
 ![alt text][image1]
 
-####2. Attempts to reduce overfitting in the model
+### 2. Attempts to reduce overfitting in the model
 
 The model contains dropout layers in order to reduce overfitting (model.py lines 69 and 71).
 
 The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
 
-####3. Model parameter tuning
+### 3. Model parameter tuning
 
 The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 108). The number of epochs I went with was 3, as there seemed to be no added value in more. Additionally, I went with a batch size of 32 given fairly good results from that.
 
-####4. Appropriate training data
+### 4. Appropriate training data
 
 Training data was chosen to keep the vehicle driving on the road. I used the Udacity dataset, which I learned has mostly straight driving and less recovery situations.
 
 For details about how I created the training data, see the next section.
 
-###Model Architecture and Training Strategy
+## Model Architecture and Training Strategy
 
-####1. Solution Design Approach
+### 1. Solution Design Approach
 
 The overall strategy for deriving a model architecture was to take the NVIDIA model and improve it to the point where driving around the track in simulation mode would be acceptable. The only modifications were a lambda layer for normalization (if you consider normalization a modification) and dropout layers. As for dropout layers there are many permutations (i.e. how many of them, where to put them, what rate). I don't doubt that there are more optimal configurations with respect to dropout.
 
@@ -93,13 +93,13 @@ The final step was to run the simulator to see how well the car was driving arou
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
-####2. Final Model Architecture
+### 2. Final Model Architecture
 
 The final model architecture (model.py lines 59-73) consisted of a convolution neural network with the following layers and layer sizes:
 
 ![alt text][image2]
 
-####3. Creation of the Training Set & Training Process
+### 3. Creation of the Training Set & Training Process
 
 As mentioned, after being discontent with my own training data, I switched to the Udacity training set given on the website. Here is an example image of center lane driving:
 
