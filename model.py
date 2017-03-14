@@ -45,7 +45,7 @@ def generator(data, batch_size=32, correction=.2):
 
                     # Add flipped image
                     image_flipped = np.fliplr(image)
-                    angles.append(-steering)
+                    angles.append(steering * -1.0)
                     images.append(image_flipped)
 
             X_train = np.array(images)
@@ -65,13 +65,11 @@ def create_model():
     model.add(Convolution2D(64, 3, 3, activation="relu"))
     model.add(Convolution2D(64, 3, 3, activation="relu"))
     model.add(Flatten())
-    model.add(Dropout(.2))
     model.add(Dense(100))
-    model.add(Dropout(.2))
+    model.add(Dropout(.5))
     model.add(Dense(50))
-    model.add(Dropout(.2))
+    model.add(Dropout(.5))
     model.add(Dense(10))
-    model.add(Dropout(.2))
     model.add(Dense(1))
     return model
 
@@ -96,7 +94,7 @@ if __name__ == "__main__":
     train_samples, validation_samples = train_test_split(samples, test_size=0.2)
 
     # tunable parameter to adjust left/right steering angles
-    steering_correction = 0.20
+    steering_correction = 0.22
 
     # compile and train the model using the generator function
     train_generator = generator(train_samples, batch_size=32, correction=steering_correction)
@@ -106,13 +104,14 @@ if __name__ == "__main__":
     number_of_validation_samples = len(validation_samples) * 6
 
     nvidia_model = create_model()
+    nvidia_model.summary()
     nvidia_model.compile(loss='mse', optimizer='adam')
 
     history_object = nvidia_model.fit_generator(train_generator,
                                                 samples_per_epoch=number_of_training_samples,
                                                 validation_data=validation_generator,
                                                 nb_val_samples=number_of_validation_samples,
-                                                nb_epoch=5, verbose=1)
+                                                nb_epoch=3, verbose=1)
 
     nvidia_model.save('model.h5')  # creates a HDF5 file 'model.h5'
 
