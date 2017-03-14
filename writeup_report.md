@@ -1,6 +1,6 @@
 **Behavioral Cloning**
 
-# Writeup Template
+# Writeup
 
 ---
 
@@ -17,7 +17,7 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 [image1]: ./cnn-architecture.png "NVIDIA architecture"
-[image2]: ./figure1.png "Model Visualization"
+[image2]: ./figure_1.png "Model Visualization"
 [image3]: ./example_center.jpg "Example image from the center camera"
 [image4]: ./example_left.jpg "Example image from the left camera"
 [image5]: ./example_right.jpg "Example image from the right camera"
@@ -25,31 +25,6 @@ The goals / steps of this project are the following:
 [image7]: ./example_center_flipped.jpg "Example flipped image from the center camera"
 [image8]: ./example_right_flipped.jpg "Example flipped image from the right camera"
 [image9]: ./training_results.png "Results of training the model"
-
-# Rubric Points
-## Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
-
----
-## Files Submitted & Code Quality
-
-### 1. Submission includes all required files and can be used to run the simulator in autonomous mode
-
-My project includes the following files:
-* model.py containing the script to create and train the model
-* drive.py for driving the car in autonomous mode
-* model.h5 containing a trained convolution neural network
-* writeup_report.md summarizing the results
-* run1.mp4 being a video of the successful autonomous drive
-
-### 2. Submission includes functional code
-Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing
-```sh
-python drive.py model.h5
-```
-
-### 3. Submission code is usable and readable
-
-The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
 
 ## Model Architecture and Training Strategy
 
@@ -71,7 +46,7 @@ The model was tested by running it through the simulator and ensuring that the v
 
 ### 3. Model parameter tuning
 
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 108). The number of epochs I went with was 3, as there seemed to be no added value in more. Additionally, I went with a batch size of 32 given fairly good results from that.
+The model used an Adam optimizer, so the learning rate was not tuned manually (model.py line 108). The number of epochs I went with was 3, as there seemed to be no added value in more. Additionally, I went with a batch size of 32 given fairly good results from that.
 
 ### 4. Appropriate training data
 
@@ -105,12 +80,16 @@ As mentioned, after being discontent with my own training data, I switched to th
 
 ![alt text][image3]
 
+The tricky part in my opinion was using the left/right camera images in the dataset. Since the steering angle is relative to the center camera, in order to learn from the left/right images we must add or subtract degrees for the steering.
+
 And an example of an image from the left and right cameras:
 
 ![alt text][image4]
 ![alt text][image5]
 
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here are three images that has then been flipped, from the left, center and right cameras respectively.
+I ultimately added .22 to the steering for a left images, and subtracted .22 from the steering for the right images.
+
+To augment the data sat, I also flipped images and angles thinking that this would give me more scenarios to train from. For example, here are three images that has then been flipped, from the left, center and right cameras respectively.
 
 ![alt text][image6]
 ![alt text][image7]
@@ -121,6 +100,12 @@ After the collection process, I had 38568 data points. I then preprocessed this 
 
 I finally randomly shuffled the data set and put 10% of the data into a validation set.
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 3 as evidenced by trying different epochs and comparing training loss vs validation loss. I used an adam optimizer so that manually training the learning rate wasn't necessary.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 3 as evidenced by trying different epochs and comparing training loss vs validation loss. I used an Adam optimizer so that manually training the learning rate wasn't necessary.
 
 ![alt text][image9]
+
+# After thoughts
+
+I enjoyed this exercise for the most part. I did at times find it frustrating when I could not stay on the road. What is important is to be patient and repeatedly analyze all of the steps, as with any engineering challenge you struggle with. In the end, getting the car to successfully round the track brought me great satisfaction, and excitement for the implications of using this method for the greater problem of designing self driving car software.
+
+I find model improvement as a departure from most of my experiences in computer science in a sense that we are performing trial and error on parameters. Ironically, this is more "science" than what I traditionally refer to as computer science, namely software development. As mentioned before, I don't doubt that the model can be improved drastically by changing the architecture or especially improving upon the algorithm for determining the angle correction for the left/right camera images (currently I am simply adding or subtracting a constant value).
