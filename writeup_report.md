@@ -21,9 +21,9 @@ The goals / steps of this project are the following:
 [image3]: ./example_center.jpg "Example image from the center camera"
 [image4]: ./example_left.jpg "Example image from the left camera"
 [image5]: ./example_right.jpg "Example image from the right camera"
-[image6]: ./example_left_flipped "Example flipped image from the left camera"
-[image7]: ./example_center_flipped "Example flipped image from the center camera"
-[image8]: ./example_right_flipped "Example flipped image from the right camera"
+[image6]: ./example_left_flipped.jpg "Example flipped image from the left camera"
+[image7]: ./example_center_flipped.jpg "Example flipped image from the center camera"
+[image8]: ./example_right_flipped.jpg "Example flipped image from the right camera"
 [image9]: ./training_results.png "Results of training the model"
 
 # Rubric Points
@@ -106,6 +106,7 @@ As mentioned, after being discontent with my own training data, I switched to th
 ![alt text][image3]
 
 And an example of an image from the left and right cameras:
+
 ![alt text][image4]
 ![alt text][image5]
 
