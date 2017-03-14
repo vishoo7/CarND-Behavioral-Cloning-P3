@@ -1,6 +1,6 @@
-**Behavioral Cloning**
+# Behavioral Cloning
 
-# Writeup
+## Writeup
 
 ---
 
@@ -17,7 +17,7 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 [image1]: ./cnn-architecture.png "NVIDIA architecture"
-[image2]: ./figure_1.png "Model Visualization"
+[image2]: ./model_summary.png "Model Visualization"
 [image3]: ./example_center.jpg "Example image from the center camera"
 [image4]: ./example_left.jpg "Example image from the left camera"
 [image5]: ./example_right.jpg "Example image from the right camera"
@@ -25,6 +25,7 @@ The goals / steps of this project are the following:
 [image7]: ./example_center_flipped.jpg "Example flipped image from the center camera"
 [image8]: ./example_right_flipped.jpg "Example flipped image from the right camera"
 [image9]: ./training_results.png "Results of training the model"
+[image10]: ./figure_1.png "MSE by epochs"
 
 ## Model Architecture and Training Strategy
 
@@ -103,6 +104,8 @@ I finally randomly shuffled the data set and put 10% of the data into a validati
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 3 as evidenced by trying different epochs and comparing training loss vs validation loss. I used an Adam optimizer so that manually training the learning rate wasn't necessary.
 
 ![alt text][image9]
+
+![alt text][image10]
 
 # After thoughts
 
